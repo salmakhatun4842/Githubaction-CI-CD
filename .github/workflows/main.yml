@@ -83,19 +83,19 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # # Create the Elastic Beanstalk application
-      # - name: Create EBS application
-      #   run: |
-      #     eb init -p python-3.6 hello-world 
-      # # Deploy to (or Create) the Elastic Beanstalk environment
-      # - name: Create test environment & deploy
-      #   run: |
-      #     (eb use test-environment && eb status test-environment && eb deploy) || eb create test-environment
+      # Create the Elastic Beanstalk application
+      - name: Create EBS application
+        run: |
+          eb init -p python-3.6 hello-world 
+      # Deploy to (or Create) the Elastic Beanstalk environment
+      - name: Create test environment & deploy
+        run: |
+          (eb use test-environment && eb status test-environment && eb deploy) || eb create test-environment
 
-      - name: Deploy to Server 1
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${ { secrets.EC2_SSH_KEY }}
-          REMOTE_HOST: ${ { secrets.HOST_DNS }}
-          REMOTE_USER: ${ { secrets.USERNAME }}
-          TARGET: ${ { secrets.TARGET_DIR }}
+#       - name: Deploy to Server 1
+#         uses: easingthemes/ssh-deploy@main
+#         env:
+#           SSH_PRIVATE_KEY: ${ { secrets.EC2_SSH_KEY }}
+#           REMOTE_HOST: ${ { secrets.HOST_DNS }}
+#           REMOTE_USER: ${ { secrets.USERNAME }}
+#           TARGET: ${ { secrets.TARGET_DIR }}
